@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.swing.ButtonGroup;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -51,14 +52,14 @@ public class Users implements Serializable {
         this.password= password;
     }
 
-    public Users(Integer idUser, String name, String password, String email, String profile) {
+    public Users(Integer idUser, String name, String password, String email, ButtonGroup profile) {
         this.idUser = idUser;
         this.name = name;
         this.password = password;
         this.email = email;
-        this.profile = profile;
+ 
     }
-
+    
     public Integer getIdUser() {
         return idUser;
     }

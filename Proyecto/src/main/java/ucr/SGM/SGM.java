@@ -4,6 +4,8 @@
 
 package ucr.SGM;
 
+import Controlador.Manejador_Login;
+
 /**
  *
  * @author Keyla
@@ -11,6 +13,6 @@ package ucr.SGM;
 public class SGM {
 
     public static void main(String[] args) {
-        //System.out.println("Hello World!");
+        new Manejador_Login();
     }
 }

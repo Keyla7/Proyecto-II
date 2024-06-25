@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import Modelo.Users;
+import java.awt.event.ActionListener;
+import javax.swing.Icon;
+
 /**
  *
  * @author Keyla
@@ -16,6 +20,30 @@ public class Record extends javax.swing.JFrame {
     public Record() {
         initComponents();
     }
+    
+    public void escuchar(ActionListener manejador){
+        btnIniciarSesion.addActionListener(manejador);
+        btnRegistro.addActionListener(manejador);
+        radioAdmin.addActionListener(manejador);
+        radioEmpleado.addActionListener(manejador);
+    }
+    
+    public Users getUser(){
+        String name = txtName.getText();
+        int iduser = Integer.parseInt(txtIDUser.getText());
+        String password = txtPassword.getText();
+        String email = txtEmail.getText();
+        this.profile.getSelection();
+        
+        return new Users(iduser, name, password, email, profile);
+    }
+    
+    public void limpiar(){
+        txtEmail.setText("");
+        txtIDUser.setText("");
+        txtName.setText("");
+        txtPassword.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +54,22 @@ public class Record extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        profile = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtName = new javax.swing.JTextField();
+        txtIDUser = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        radioAdmin = new javax.swing.JRadioButton();
+        radioEmpleado = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,74 +79,76 @@ public class Record extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 220, 30));
+        txtName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 220, 30));
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 220, 30));
+        txtIDUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.add(txtIDUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 220, 30));
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 220, 30));
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 220, 30));
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 30));
+        txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 30));
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jRadioButton1.setText("Admin");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        profile.add(radioAdmin);
+        radioAdmin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        radioAdmin.setText("Admin");
+        jPanel2.add(radioAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jRadioButton2.setText("Employee");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
+        profile.add(radioEmpleado);
+        radioEmpleado.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        radioEmpleado.setText("Employee");
+        jPanel2.add(radioEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/7238996_basic_name_office_business_management_icon (2).png"))); // NOI18N
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setOpaque(true);
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 30, 30));
 
-        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/309035_user_account_human_person_icon.png"))); // NOI18N
         jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel2.setOpaque(true);
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 30, 30));
 
-        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel3.setBackground(new java.awt.Color(102, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/9055383_bxs_lock_icon.png"))); // NOI18N
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel3.setOpaque(true);
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 30, 30));
 
-        jLabel4.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel4.setBackground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1181190_email_gmail_google_mail_icon (1).png"))); // NOI18N
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel4.setOpaque(true);
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 30, 30));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        jButton1.setText("SING UP");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 230, 30));
+        btnRegistro.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        btnRegistro.setText("SING UP");
+        btnRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Already have an account?");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, 20));
 
-        jButton2.setText("Sing In");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+        btnIniciarSesion.setText("Sing In");
+        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +158,7 @@ public class Record extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,8 +169,8 @@ public class Record extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -147,11 +178,12 @@ public class Record extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.ButtonGroup profile;
+    private javax.swing.JRadioButton radioAdmin;
+    private javax.swing.JRadioButton radioEmpleado;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIDUser;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

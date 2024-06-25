@@ -26,20 +26,16 @@ public class Login extends javax.swing.JFrame {
         checkR.addActionListener(manejador);
     }
     
-    public void setUser(Users user){
-        this.txtUser.setText(""+user.getIdUser());
-        this.txtPassword.setText(user.getPassword());
+    public Users getUser() {
+        int iduser = Integer.parseInt(txtUser.getText());
+        String password = txtPassword.getText();
+       
+        return new Users(iduser, password);
     }
     
-    public Users getUser(){
-        int idUser= Integer.parseInt(txtUser.getText());
-        String password= txtPassword.getText();
-        
-        Users u = new Users(idUser, password);
-        u.setIdUser(idUser);
-        u.setPassword(password);
-        
-        return u;
+    public void limpiar(){
+        this.txtPassword.setText("");
+        this.txtUser.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,16 +118,16 @@ public class Login extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(141, 141, 141)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
