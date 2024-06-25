@@ -46,8 +46,9 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Integer idUser) {
+    public Users(int idUser, String password) {
         this.idUser = idUser;
+        this.password= password;
     }
 
     public Users(Integer idUser, String name, String password, String email, String profile) {
