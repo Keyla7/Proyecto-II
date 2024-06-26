@@ -195,7 +195,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistrarse">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sing up"/>
+            <Property name="text" type="java.lang.String" value="Sign up"/>
+            <Property name="actionCommand" type="java.lang.String" value="SIGN UP"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Users;
 import Modelo.UsersJpaController;
+import Vista.Inicio;
 import Vista.Inventario;
 import Vista.Registro;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,7 @@ import java.awt.event.MouseListener;
  * @author Keyla
  */
 public class Manejador_Inventario implements ActionListener, MouseListener {
-    
+
     private Users user;
     private Inventario tabla;
     private UsersJpaController registroUsuarios;
@@ -26,28 +27,30 @@ public class Manejador_Inventario implements ActionListener, MouseListener {
 
     public Manejador_Inventario() {
         this.tabla = new Inventario();
-        this.registroUsuarios= new UsersJpaController();
+        this.registroUsuarios = new UsersJpaController();
         this.tabla.escuchadorIn(this);
         this.tabla.setVisible(true);
         this.registroUsuarios = new UsersJpaController();
-        this.tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
+        //this.tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand().toString()) {
             case "Editar":
-               this.user = this.registrarse.getUser();
-               tabla.getMensaje(this.registroUsuarios.edit(user));
+                this.user = this.registrarse.getUser();
+                Inicio.getMensaje(this.registroUsuarios.edit(user));
                 break;
             case "Eliminar":
-
+                Inicio.getMensaje(this.registroUsuarios.destroy(this.user.getIdUser()));
                 break;
             case "Consultar":
 
                 break;
             case "Tabla":
-
+                tabla = new Inventario();
+                tabla.escuchadorMouse(this);
+                tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
                 break;
         }
     }
@@ -55,9 +58,9 @@ public class Manejador_Inventario implements ActionListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Users usuarioSeleccionado = new Users();
-        
+
         usuarioSeleccionado.setName(this.tabla.getRow()[0]);
-        usuarioSeleccionado.setIdUser(Integer.parseInt(this.tabla.getRow()[1])); 
+        usuarioSeleccionado.setIdUser(Integer.parseInt(this.tabla.getRow()[1]));
         usuarioSeleccionado.setPassword(this.tabla.getRow()[2]);
         usuarioSeleccionado.setEmail(this.tabla.getRow()[3]);
         usuarioSeleccionado.setProfile(this.tabla.getRow()[4]);

@@ -5,6 +5,7 @@
 package SGM;
 
 import Controlador.Manejador_Inicio;
+import Controlador.Manejador_Registro;
 
 /**
  *

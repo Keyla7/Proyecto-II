@@ -59,6 +59,7 @@ public class Users implements Serializable {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.profile= profile;
     }
     
     public String getDatosU(int columna) {

@@ -6,6 +6,7 @@ package Vista;
 
 import Modelo.Users;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,10 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+    }
+    
+    public static void getMensaje(String msj){
+        JOptionPane.showMessageDialog(null, msj);
     }
     
      public void escuchar(ActionListener manejador){
@@ -112,7 +117,8 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setText("Don't have account?");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 130, 20));
 
-        btnRegistrarse.setText("Sing up");
+        btnRegistrarse.setText("Sign up");
+        btnRegistrarse.setActionCommand("SIGN UP");
         jPanel1.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

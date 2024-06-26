@@ -20,10 +20,6 @@ public class Inventario extends javax.swing.JFrame {
      */
     public Inventario() {
         initComponents();
-    }
-
-    public static void getMensaje(String msj){
-        JOptionPane.showMessageDialog(null, msj);
     } 
             
     public void escuchadorIn(ActionListener manejador){

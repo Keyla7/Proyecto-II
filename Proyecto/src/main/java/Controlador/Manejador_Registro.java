@@ -16,35 +16,43 @@ import java.awt.event.ActionListener;
  *
  * @author Keyla
  */
-public class Manejador_Registro implements ActionListener{
+public class Manejador_Registro implements ActionListener {
+
     private Registro registrarse;
     private Users user;
     private UsersJpaController registro;
     private Inicio inicioSesion;
     private Inventario tabla;
 
-    public Manejador_Registro(UsersJpaController registroUsuarios) {
+    public Manejador_Registro() {
         this.registrarse = new Registro();
+//        this.inicioSesion = new Inicio();
         this.registrarse.setVisible(true);
         this.registrarse.escuchar(this);
-        this.registro = new UsersJpaController();
+        
+        registro = new UsersJpaController();
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand().toString()){
-            case "Sing up":
+        switch (e.getActionCommand().toString()) {
+            case "SIGN UP":
                 this.user = this.registrarse.getUser();
                 if (this.validarCampos(user)) {
-                    Inventario.getMensaje(this.registro.create(user));
+                    Inicio.getMensaje(this.registro.create(user));
                     this.registrarse.limpiar();
                 }
                 break;
+            case "SIGN IN":
+                new Manejador_Inicio();
+                registrarse.setVisible(false);
+                break;
         }
-    } 
-    
-     public boolean validarCampos(Users user) {
-        if (user.getName().isEmpty() || user.getIdUser()== 0 || user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()){
-            tabla.getMensaje("Por favor ingrese todos los valores");
+    }
+
+    public boolean validarCampos(Users user) {
+        if (user.getName().isEmpty() || user.getIdUser() == 0 || user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()) {
+            Inicio.getMensaje("Por favor ingrese todos los valores");
             return false;
         }
         return true;

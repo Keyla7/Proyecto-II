@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.Users;
 import Modelo.UsersJpaController;
 import Vista.Inicio;
+import Vista.Inventario;
 import Vista.Registro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,10 +26,12 @@ public class Manejador_Inicio implements ActionListener {
     private UsersJpaController registroUsuarios;
     private Inicio inicioSesion;
     private Registro registrarse;
+    private Inventario tabla;
 
     //---------------------------------------------------------------
     public Manejador_Inicio() {
         this.inicioSesion = new Inicio();
+        this.tabla= new Inventario();
         this.inicioSesion.escuchar(this);
         this.inicioSesion.setVisible(true);
 
@@ -38,12 +41,12 @@ public class Manejador_Inicio implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand().toString()) {
-            case "Sign in":
+            case "SIGN IN":
                 user = inicioSesion.getUserData();
                 if (user != null) {
                     try {
                         if (registroUsuarios.verificacionU(user)) {
-                            new Registro();
+                            new Inventario();
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Manejador_Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,11 +56,9 @@ public class Manejador_Inicio implements ActionListener {
                 inicioSesion.setVisible(false);
                 break;
 
-            case "Sign up":
-                user = inicioSesion.getUserData();
-                if (user != null) {
-                    JOptionPane.showMessageDialog(null, registroUsuarios.create(user));
-                }
+            case "SIGN UP":
+                new Manejador_Registro();
+                inicioSesion.setVisible(false);
                 break;
         }
     }
