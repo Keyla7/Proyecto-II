@@ -74,62 +74,62 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 200, 30));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 200, 30));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/309035_user_account_human_person_icon.png"))); // NOI18N
         jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 30, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 30, 30));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/9055383_bxs_lock_icon.png"))); // NOI18N
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 30, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 30, 30));
 
         txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 200, 30));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 200, 30));
 
         checkR.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         checkR.setText("Remember me");
-        jPanel1.add(checkR, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+        jPanel1.add(checkR, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         btnLogin.setText("SIGN IN");
         btnLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 230, 30));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 230, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/172628_user_male_icon (1).png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 70, 70));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, 70));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Forgot you password?");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 140, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Don't have account?");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 130, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 130, 20));
 
         btnRegistrarse.setText("Sign up");
         btnRegistrarse.setActionCommand("SIGN UP");
-        jPanel1.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
+        jPanel1.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
         );
 
         pack();

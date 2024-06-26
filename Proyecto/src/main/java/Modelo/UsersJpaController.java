@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,15 +24,13 @@ import javax.persistence.criteria.Root;
 public class UsersJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
-    ArrayList<Users> listaUsuarios;
-    
-    
-    public UsersJpaController(){
-        this.emf= Persistence.createEntityManagerFactory("Proyecto");
-        //this.listaUsuarios= consultarLista();
-        this.listaUsuarios= new ArrayList<>();
+    List<Users> listaUsuarios;
+
+    public UsersJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("Proyecto");
+        this.listaUsuarios = consultarLista();
     }
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -56,7 +55,7 @@ public class UsersJpaController implements Serializable {
         }
     }
 
-    public String edit(Users users){
+    public String edit(Users users) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -80,7 +79,7 @@ public class UsersJpaController implements Serializable {
         }
     }
 
-    public String destroy(Integer id){
+    public String destroy(Integer id) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -101,7 +100,7 @@ public class UsersJpaController implements Serializable {
             }
         }
     }
-    
+
     public List<Users> consultarLista() {
         EntityManager em = getEntityManager();
         try {
@@ -136,28 +135,32 @@ public class UsersJpaController implements Serializable {
             em.close();
         }
     }
-    
-    public String[][] getMatrizUsuarios(){
-        String[][] matrizCompus= new String[this.listaUsuarios.size()][Users.LISTA_USUARIOS.length];
+
+    public String[][] getMatrizUsuarios() {
+        String[][] matrizCompus = new String[this.listaUsuarios.size()][Users.LISTA_USUARIOS.length];
         for (int i = 0; i < matrizCompus.length; i++) //filas
         {
             for (int j = 0; j < matrizCompus[0].length; j++) //columnas
             {
-              matrizCompus[i][j]= this.listaUsuarios.get(i).getDatosU(j);
+                matrizCompus[i][j] = this.listaUsuarios.get(i).getDatosU(j);
             }
         }
-        System.out.println(""+matrizCompus[0][0]);
+        System.out.println("" + matrizCompus[0][0]);
         return matrizCompus;
     }
-    
+
     public boolean verificacionU(Users user) throws IOException {
-        ArrayList<Users> usuariosRegistrados = listaUsuarios;
+        List<Users> usuariosRegistrados = listaUsuarios;
         for (Users u : usuariosRegistrados) {
-            if (u.getIdUser()== user.getIdUser() && u.getPassword().equals(user.getPassword())) {
-                return true;
+            if (u.getIdUser() == user.getIdUser() && u.getPassword().equals(user.getPassword())) {
+                if (u.getProfile().equals("Admin")) {
+                    return true;
+                }
+                JOptionPane.showMessageDialog(null, "No tiene acceso");
+                return false;
             }
         }
+        JOptionPane.showMessageDialog(null, "ERROR: Datos incorrectos");
         return false;
     }
-    
 }

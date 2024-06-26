@@ -34,6 +34,7 @@ public class Manejador_Inicio implements ActionListener {
         this.tabla= new Inventario();
         this.inicioSesion.escuchar(this);
         this.inicioSesion.setVisible(true);
+        this.inicioSesion.setLocationRelativeTo(null);
 
         this.registroUsuarios = new UsersJpaController();
     }
@@ -46,14 +47,13 @@ public class Manejador_Inicio implements ActionListener {
                 if (user != null) {
                     try {
                         if (registroUsuarios.verificacionU(user)) {
-                            new Inventario();
+                            new Manejador_Inventario();
+                            inicioSesion.setVisible(false);
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(Manejador_Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 }
-                inicioSesion.setVisible(false);
                 break;
 
             case "SIGN UP":
