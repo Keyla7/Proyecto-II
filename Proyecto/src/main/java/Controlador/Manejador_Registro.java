@@ -26,10 +26,9 @@ public class Manejador_Registro implements ActionListener {
 
     public Manejador_Registro() {
         this.registrarse = new Registro();
-//        this.inicioSesion = new Inicio();
         this.registrarse.setVisible(true);
         this.registrarse.escuchar(this);
-        
+        this.registrarse.setLocationRelativeTo(null);
         registro = new UsersJpaController();
     }
 

@@ -32,6 +32,7 @@ public class Manejador_Inventario implements ActionListener, MouseListener {
         this.tabla.setVisible(true);
         this.registroUsuarios = new UsersJpaController();
         this.tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
+        this.tabla.setLocationRelativeTo(null);
     }
 
     @Override
