@@ -44,6 +44,8 @@ public class Users implements Serializable {
     @Column(name = "profile")
     private String profile;
 
+    public static final String[] LISTA_USUARIOS = {"Id", "Name", "Password", "Email", "Profile"};
+    
     public Users() {
     }
 
@@ -52,12 +54,27 @@ public class Users implements Serializable {
         this.password= password;
     }
 
-    public Users(Integer idUser, String name, String password, String email, ButtonGroup profile) {
+    public Users(int idUser, String name, String password, String email, String profile) {
         this.idUser = idUser;
         this.name = name;
         this.password = password;
         this.email = email;
- 
+    }
+    
+    public String getDatosU(int columna) {
+        switch (columna) {
+            case 0:
+                return String.valueOf(this.idUser);
+            case 1:
+                return this.name;
+            case 2:
+                return this.password;
+            case 3:
+                return this.email;
+            case 4:
+                return this.profile;
+        }
+        return "";
     }
     
     public Integer getIdUser() {

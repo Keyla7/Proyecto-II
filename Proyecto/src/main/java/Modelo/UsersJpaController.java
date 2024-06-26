@@ -4,7 +4,9 @@
  */
 package Modelo;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,10 +23,13 @@ import javax.persistence.criteria.Root;
 public class UsersJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
-    List<Users> listaUsuarios;
+    ArrayList<Users> listaUsuarios;
+    
     
     public UsersJpaController(){
         this.emf= Persistence.createEntityManagerFactory("ProyectoII");
+        //this.listaUsuarios= consultarLista();
+        this.listaUsuarios= new ArrayList<>();
     }
     
     public EntityManager getEntityManager() {
@@ -130,6 +135,29 @@ public class UsersJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public String[][] getMatrizUsuarios(){
+        String[][] matrizCompus= new String[this.listaUsuarios.size()][Users.LISTA_USUARIOS.length];
+        for (int i = 0; i < matrizCompus.length; i++) //filas
+        {
+            for (int j = 0; j < matrizCompus[0].length; j++) //columnas
+            {
+              matrizCompus[i][j]= this.listaUsuarios.get(i).getDatosU(j);
+            }
+        }
+        System.out.println(""+matrizCompus[0][0]);
+        return matrizCompus;
+    }
+    
+    public boolean verificacionU(Users user) throws IOException {
+        ArrayList<Users> usuariosRegistrados = listaUsuarios;
+        for (Users u : usuariosRegistrados) {
+            if (u.getIdUser()== user.getIdUser() && u.getPassword().equals(user.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

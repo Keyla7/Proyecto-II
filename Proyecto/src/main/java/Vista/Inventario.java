@@ -6,6 +6,7 @@ package Vista;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +22,10 @@ public class Inventario extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static void getMensaje(String msj){
+        JOptionPane.showMessageDialog(null, msj);
+    } 
+            
     public void escuchadorIn(ActionListener manejador){
        btnConsultar.addActionListener(manejador);
        btnEditar.addActionListener(manejador);
