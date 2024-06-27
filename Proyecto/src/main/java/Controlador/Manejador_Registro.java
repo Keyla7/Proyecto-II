@@ -11,12 +11,14 @@ import Vista.Inventario;
 import Vista.Registro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  *
  * @author Keyla
  */
-public class Manejador_Registro implements ActionListener {
+public class Manejador_Registro implements ActionListener, ItemListener {
 
     private Registro registrarse;
     private Users user;
@@ -30,6 +32,7 @@ public class Manejador_Registro implements ActionListener {
         this.registrarse.escuchar(this);
         this.registrarse.setLocationRelativeTo(null);
         registro = new UsersJpaController();
+        this.registrarse.escucharCheck(this);
     }
 
     @Override
@@ -50,10 +53,19 @@ public class Manejador_Registro implements ActionListener {
     }
 
     public boolean validarCampos(Users user) {
-        if (user.getName().isEmpty()|| user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()) {
+        if (user.getName().isEmpty() || user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()) {
             Inicio.getMensaje("Por favor ingrese todos los valores");
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) { //si está seleccionado el checkBox
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            registrarse.estadoTxt(true); //se puede ver la contraseña
+        } else {
+            registrarse.estadoTxt(false); //no se puede ver la contraseña
+        }
     }
 }

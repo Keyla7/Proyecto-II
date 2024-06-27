@@ -7,6 +7,7 @@ package Vista;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,6 +48,10 @@ public class Inventario extends javax.swing.JFrame {
         }
         return listSelect;
     }
+    
+    public JTable getTable(){
+        return this.tblinventario;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,14 +78,14 @@ public class Inventario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Name", "Password", "Email", "Profile"
+                "Id", "Name", "Password", "Email", "Online", "Profile"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

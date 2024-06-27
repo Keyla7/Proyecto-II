@@ -7,6 +7,7 @@ package Vista;
 import Modelo.Users;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -28,14 +29,23 @@ public class Registro extends javax.swing.JFrame {
         this.cbxProfile.addActionListener(manejador);
     }
     
+    public void escucharCheck(ItemListener manejador){
+        Check.addItemListener(manejador);
+    }
+    
+    public void setUser(Users user){
+        txtName.setText(user.getName());
+        txtPassword.setText(user.getPassword());
+        txtEmail.setText(user.getEmail());
+        cbxProfile.setSelectedItem(user.getProfile());
+    }
     public Users getUser(){
-        int id = 0;
         String name = txtName.getText();
         String password = txtPassword.getText();
         String email = txtEmail.getText();
         String comboProfile = (String) cbxProfile.getSelectedItem();
         
-        return new Users(id, name, password, email, comboProfile);
+        return new Users(name, password, email, comboProfile);
     }
     
     public void cargarCombo(String[] listaUsuarios) {
@@ -52,6 +62,15 @@ public class Registro extends javax.swing.JFrame {
         txtName.setText("");
         txtPassword.setText("");
     }
+    
+    public void estadoTxt(boolean estado) { //metodo para ocultar la contraseña
+        if (estado == true) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('\u2022'); 
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,13 +84,14 @@ public class Registro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnRegistro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
         cbxProfile = new javax.swing.JComboBox<>();
+        txtPassword = new javax.swing.JPasswordField();
+        Check = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,8 +103,15 @@ public class Registro extends javax.swing.JFrame {
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setOpaque(true);
 
+        txtName.setForeground(new java.awt.Color(204, 204, 204));
+        txtName.setText("Enter your name");
         txtName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtName.setCaretColor(new java.awt.Color(187, 187, 187));
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
 
         jLabel3.setBackground(new java.awt.Color(102, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,15 +119,20 @@ public class Registro extends javax.swing.JFrame {
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel3.setOpaque(true);
 
-        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jLabel4.setBackground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1181190_email_gmail_google_mail_icon (1).png"))); // NOI18N
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel4.setOpaque(true);
 
+        txtEmail.setForeground(new java.awt.Color(204, 204, 204));
+        txtEmail.setText("Enter your email");
         txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
 
         btnRegistro.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         btnRegistro.setText("SIGN UP");
@@ -114,67 +146,81 @@ public class Registro extends javax.swing.JFrame {
 
         cbxProfile.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         cbxProfile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Employee" }));
-        cbxProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cbxProfile.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
+        txtPassword.setText("********");
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
+
+        Check.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        Check.setText("Show password");
+        Check.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, 0)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 175, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(178, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbxProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(253, 253, 253))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addComponent(jLabel5)
                                 .addGap(10, 10, 10)
                                 .addComponent(btnIniciarSesion)))
-                        .addGap(183, 183, 183))))
+                        .addGap(181, 181, 181))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbxProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(248, 248, 248))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Check)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPassword)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(178, 178, 178))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Check)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbxProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(50, 50, 50)
                 .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIniciarSesion))
-                .addGap(44, 44, 44))
+                .addGap(76, 76, 76))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,12 +237,58 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+        if (txtName.getText().equals("Enter your name")) {
+            txtName.setText("");
+            txtName.setForeground(Color.DARK_GRAY);
+        }
+        if (txtEmail.getText().isEmpty()) {
+            txtEmail.setText("Enter your name");
+            txtEmail.setForeground(Color.LIGHT_GRAY);
+        }
+        if (txtPassword.getText().isEmpty()) {
+            txtPassword.setText("Enter your name");
+            txtPassword.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        if (txtEmail.getText().equals("Enter your email")) {
+            txtEmail.setText("");
+            txtEmail.setForeground(Color.DARK_GRAY);
+        }
+        if (txtName.getText().isEmpty()) {
+            txtName.setText("Enter your name");
+            txtName.setForeground(Color.LIGHT_GRAY);
+        }
+        if (txtPassword.getText().isEmpty()) {
+            txtPassword.setText("Enter your password");
+            txtPassword.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
+        if (String.valueOf(txtPassword.getPassword()).equals("********")) {
+            txtPassword.setText("");
+            txtPassword.setForeground(Color.DARK_GRAY);
+        }
+        if (txtName.getText().isEmpty()) {
+            txtName.setText("Enter your name");
+            txtName.setForeground(Color.LIGHT_GRAY);
+        }
+        if (txtEmail.getText().isEmpty()) {
+            txtPassword.setText("Enter your email");
+            txtPassword.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_txtPasswordMouseClicked
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox Check;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JComboBox<String> cbxProfile;
@@ -207,6 +299,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

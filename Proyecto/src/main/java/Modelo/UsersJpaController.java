@@ -137,16 +137,16 @@ public class UsersJpaController implements Serializable {
     }
 
     public String[][] getMatrizUsuarios() {
-        String[][] matrizCompus = new String[this.listaUsuarios.size()][Users.LISTA_USUARIOS.length];
-        for (int i = 0; i < matrizCompus.length; i++) //filas
+        this.listaUsuarios = consultarLista();
+        String[][] matrizUser = new String[this.listaUsuarios.size()][Users.LISTA_USUARIOS.length];
+        for (int i = 0; i < matrizUser.length; i++) //filas
         {
-            for (int j = 0; j < matrizCompus[0].length; j++) //columnas
+            for (int j = 0; j < matrizUser[0].length; j++) //columnas
             {
-                matrizCompus[i][j] = this.listaUsuarios.get(i).getDatosU(j);
+                matrizUser[i][j] = this.listaUsuarios.get(i).getDatosU(j);
             }
         }
-        System.out.println("" + matrizCompus[0][0]);
-        return matrizCompus;
+        return matrizUser;
     }
 
     public boolean verificacionU(Users user) throws IOException {

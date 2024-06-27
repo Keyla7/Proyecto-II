@@ -5,6 +5,7 @@
 package Vista;
 
 import Modelo.Users;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
@@ -87,24 +88,25 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 200, 30));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 200, 30));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/309035_user_account_human_person_icon.png"))); // NOI18N
         jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 30, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 30, 30));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/9055383_bxs_lock_icon.png"))); // NOI18N
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 30, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 30, 30));
 
         checkR.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         checkR.setText("Show password");
+        checkR.setBorder(null);
         jPanel1.add(checkR, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
@@ -116,11 +118,11 @@ public class Inicio extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/172628_user_male_icon (1).png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, 70));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 80));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Forgot you password?");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 140, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,7 +134,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 200, 30));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 200, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

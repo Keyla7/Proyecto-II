@@ -14,15 +14,23 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.swing.ButtonGroup;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Keyla
+ * @author quiro
  */
 @Entity
 @Table(name = "tbusers")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
+    @NamedQuery(name = "Users.findByIdUser", query = "SELECT u FROM Users u WHERE u.idUser = :idUser"),
+    @NamedQuery(name = "Users.findByName", query = "SELECT u FROM Users u WHERE u.name = :name"),
+    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
+    @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
+    @NamedQuery(name = "Users.findByOnline", query = "SELECT u FROM Users u WHERE u.online = :online"),
+    @NamedQuery(name = "Users.findByProfile", query = "SELECT u FROM Users u WHERE u.profile = :profile")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,48 +49,43 @@ public class Users implements Serializable {
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    @Column(name = "online")
+    private int online;
+    @Basic(optional = false)
     @Column(name = "profile")
     private String profile;
-
-    public static final String[] LISTA_USUARIOS = {"Id", "Name", "Password", "Email", "Profile"};
     
+    public static final String [] LISTA_USUARIOS = {"id_user","name","password","email","online","profile"};
     public Users() {
     }
 
+    public Users(Integer idUser) {
+        this.idUser = idUser;
+    }
     public Users(String email, String password) {
         this.email = email;
-        this.password= password;
+        this.password=password;
+        this.online=0;
     }
-
-    public Users(int id_User, String name, String password, String email, String profile) {
-        this.idUser = idUser;
+    public Users( String name, String password, String email, String profile) {
         this.name = name;
         this.password = password;
         this.email = email;
-        this.profile= profile;
+        this.online = 0;
+        this.profile = profile;
     }
-    
-    public String getDatosU(int columna) {
-        switch (columna) {
-            case 0:
-                return String.valueOf(this.idUser);
-            case 1:
-                return this.name;
-            case 2:
-                return this.password;
-            case 3:
-                return this.email;
-            case 4:
-                return this.profile;
-        }
-        return "";
+    public Users(int id, String name, String password, String email, String profile) {
+        this.idUser= id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.profile = profile;
     }
-    
     public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
@@ -110,6 +113,14 @@ public class Users implements Serializable {
         this.email = email;
     }
 
+    public int getOnline() {
+        return online;
+    }
+
+    public void setOnline(int online) {
+        this.online = online;
+    }
+
     public String getProfile() {
         return profile;
     }
@@ -117,9 +128,35 @@ public class Users implements Serializable {
     public void setProfile(String profile) {
         this.profile = profile;
     }
+    
+    public String getDatosU(int c){
+        switch (c) {
+            case 0:
+                
+                return this.idUser+"";
+            case 1:
+                
+                return this.name;
+                case 2:
+                
+                return this.password;
+                case 3:
+                
+                return this.email;
+                case 4:
+                
+                return this.online+"" ;
+                case 5:
+                
+                return this.profile;
+        }
+        return "";
+    }
 
     @Override
     public String toString() {
-        return "Users{" + "idUser=" + idUser + ", name=" + name + ", password=" + password + ", email=" + email + ", profile=" + profile + '}';
+        return "Users{" + "idUser=" + idUser + ", name=" + name + ", password=" + password + ", email=" + email + ", online=" + online + ", profile=" + profile + '}';
     }
+
+  
 }
