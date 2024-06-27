@@ -49,12 +49,12 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(int idUser, String password) {
-        this.idUser = idUser;
+    public Users(String email, String password) {
+        this.email = email;
         this.password= password;
     }
 
-    public Users(int idUser, String name, String password, String email, String profile) {
+    public Users(int id_User, String name, String password, String email, String profile) {
         this.idUser = idUser;
         this.name = name;
         this.password = password;
@@ -82,7 +82,7 @@ public class Users implements Serializable {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

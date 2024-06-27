@@ -42,7 +42,7 @@ public class UsersJpaController implements Serializable {
             em.getTransaction().begin();
             em.persist(users);
             em.getTransaction().commit();
-            return "Guardado";
+            return "Usuario guardado con exito";
         } catch (Exception ex) {
             if (findUsers(users.getIdUser()) != null) {
                 return "El usuario " + users + " ya existe";
@@ -62,7 +62,7 @@ public class UsersJpaController implements Serializable {
             em.getTransaction().begin();
             users = em.merge(users);
             em.getTransaction().commit();
-            return "Modificado correctamente";
+            return "Usuario modificado correctamente";
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -93,7 +93,7 @@ public class UsersJpaController implements Serializable {
             }
             em.remove(users);
             em.getTransaction().commit();
-            return "Eliminado con exito";
+            return "Usuario eliminado con exito";
         } finally {
             if (em != null) {
                 em.close();
@@ -152,7 +152,7 @@ public class UsersJpaController implements Serializable {
     public boolean verificacionU(Users user) throws IOException {
         List<Users> usuariosRegistrados = listaUsuarios;
         for (Users u : usuariosRegistrados) {
-            if (u.getIdUser() == user.getIdUser() && u.getPassword().equals(user.getPassword())) {
+            if (u.getEmail().equals(user.getEmail()) && u.getPassword().equals(user.getPassword())) {
                 if (u.getProfile().equals("Admin")) {
                     return true;
                 }

@@ -11,6 +11,8 @@ import Vista.Inventario;
 import Vista.Registro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author Keyla
  */
-public class Manejador_Inicio implements ActionListener {
+public class Manejador_Inicio implements ActionListener, ItemListener {
 
     private Users user;
     private UsersJpaController registroUsuarios;
@@ -31,10 +33,11 @@ public class Manejador_Inicio implements ActionListener {
     //---------------------------------------------------------------
     public Manejador_Inicio() {
         this.inicioSesion = new Inicio();
-        this.tabla= new Inventario();
+        this.tabla = new Inventario();
         this.inicioSesion.escuchar(this);
         this.inicioSesion.setVisible(true);
         this.inicioSesion.setLocationRelativeTo(null);
+        this.inicioSesion.escucharCheck(this);
 
         this.registroUsuarios = new UsersJpaController();
     }
@@ -44,14 +47,16 @@ public class Manejador_Inicio implements ActionListener {
         switch (e.getActionCommand().toString()) {
             case "SIGN IN":
                 user = inicioSesion.getUserData();
-                if (user != null) {
-                    try {
-                        if (registroUsuarios.verificacionU(user)) {
-                            new Manejador_Inventario();
-                            inicioSesion.setVisible(false);
+                if (this.validarCampos(user)) {
+                    if (user != null) {
+                        try {
+                            if (registroUsuarios.verificacionU(user)) {
+                                new Manejador_Inventario();
+                                inicioSesion.setVisible(false);
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(Manejador_Inicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Manejador_Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 break;
@@ -60,6 +65,23 @@ public class Manejador_Inicio implements ActionListener {
                 new Manejador_Registro();
                 inicioSesion.setVisible(false);
                 break;
+        }
+    }
+
+    public boolean validarCampos(Users user) {
+        if (user.getEmail().isEmpty() || user.getPassword().isEmpty()) {
+            Inicio.getMensaje("Por favor ingrese todos los valores");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) { //si está seleccionado el checkBox
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            inicioSesion.estadoTxt(true); //se puede ver la contraseña
+        } else {
+            inicioSesion.estadoTxt(false); //no se puede ver la contraseña
         }
     }
 }

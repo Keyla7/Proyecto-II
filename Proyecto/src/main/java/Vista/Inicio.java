@@ -6,6 +6,7 @@ package Vista;
 
 import Modelo.Users;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,13 +31,17 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarse.addActionListener(manejador);
         checkR.addActionListener(manejador);
     }
+     
+     public void escucharCheck(ItemListener manejador){
+        checkR.addItemListener(manejador);
+    }
     
     public Users getUserData(){
-        int idUser= Integer.parseInt(txtUser.getText());
+        String email= txtUser.getText();
         String password= txtPassword.getText();
         
-        Users u = new Users(idUser, password);
-        u.setIdUser(idUser);
+        Users u = new Users(email, password);
+        u.setEmail(email);
         u.setPassword(password);
         
         return u;
@@ -45,6 +50,14 @@ public class Inicio extends javax.swing.JFrame {
     public void limpiar(){
         this.txtPassword.setText("");
         this.txtUser.setText("");
+    }
+    
+    public void estadoTxt(boolean estado) { //metodo para ocultar la contraseña
+        if (estado == true) {
+            txtPassword.setEchoChar((char) 0);
+        } else {
+            txtPassword.setEchoChar('\u2022'); 
+        }
     }
 
     /**
@@ -60,13 +73,13 @@ public class Inicio extends javax.swing.JFrame {
         txtUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         checkR = new javax.swing.JCheckBox();
         btnLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnRegistrarse = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,11 +103,8 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 30, 30));
 
-        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 200, 30));
-
         checkR.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        checkR.setText("Remember me");
+        checkR.setText("Show password");
         jPanel1.add(checkR, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
@@ -120,6 +130,9 @@ public class Inicio extends javax.swing.JFrame {
         btnRegistrarse.setText("Sign up");
         btnRegistrarse.setActionCommand("SIGN UP");
         jPanel1.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
+
+        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 200, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +163,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

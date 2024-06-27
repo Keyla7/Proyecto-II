@@ -19,14 +19,15 @@ import java.awt.event.MouseListener;
  * @author Keyla
  */
 public class Manejador_Inventario implements ActionListener, MouseListener {
-
+    
     private Users user;
     private Inventario tabla;
     private UsersJpaController registroUsuarios;
     private Registro registrarse;
-
+    
     public Manejador_Inventario() {
         this.tabla = new Inventario();
+        this.registrarse= new Registro();
         this.registroUsuarios = new UsersJpaController();
         this.tabla.escuchadorIn(this);
         this.tabla.setVisible(true);
@@ -34,7 +35,7 @@ public class Manejador_Inventario implements ActionListener, MouseListener {
         this.tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
         this.tabla.setLocationRelativeTo(null);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand().toString()) {
@@ -48,43 +49,45 @@ public class Manejador_Inventario implements ActionListener, MouseListener {
             case "Tabla":
                 tabla = new Inventario();
                 tabla.escuchadorMouse(this);
-                tabla.setDataTable(this.registroUsuarios.getMatrizUsuarios(), Users.LISTA_USUARIOS);
+                break;
+            case "X":
+                new Manejador_Inicio();
+                tabla.setVisible(false);
                 break;
         }
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         Users usuarioSeleccionado = new Users();
-
-        usuarioSeleccionado.setName(this.tabla.getRow()[0]);
-        usuarioSeleccionado.setIdUser(Integer.parseInt(this.tabla.getRow()[1]));
+        
+        usuarioSeleccionado.setIdUser(Integer.parseInt(this.tabla.getRow()[0]));
+        usuarioSeleccionado.setName(this.tabla.getRow()[1]);
         usuarioSeleccionado.setPassword(this.tabla.getRow()[2]);
         usuarioSeleccionado.setEmail(this.tabla.getRow()[3]);
         usuarioSeleccionado.setProfile(this.tabla.getRow()[4]);
-
+        
         this.registrarse.getUser();
-
         this.tabla.dispose();
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
-
+        
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
-
+        
     }
 }

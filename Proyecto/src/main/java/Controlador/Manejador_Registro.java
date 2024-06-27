@@ -50,7 +50,7 @@ public class Manejador_Registro implements ActionListener {
     }
 
     public boolean validarCampos(Users user) {
-        if (user.getName().isEmpty() || user.getIdUser() == 0 || user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()) {
+        if (user.getName().isEmpty()|| user.getPassword().isEmpty() || user.getEmail().isEmpty() || user.getProfile().isEmpty()) {
             Inicio.getMensaje("Por favor ingrese todos los valores");
             return false;
         }
